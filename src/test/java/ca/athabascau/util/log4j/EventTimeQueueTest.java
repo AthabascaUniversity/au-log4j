@@ -16,7 +16,7 @@ public class EventTimeQueueTest extends TestCase
     public void testFlood() throws InterruptedException
     {
         // Allow a maximum of 5 events per second
-        final EventTimeQueue eventTimeQueue = new EventTimeQueue(5, 1000);
+        final EventTimeQueue eventTimeQueue = new EventTimeQueue(5, 1000, null);
         for (int index = 0; index < 10; index++)
         {
             boolean exceeded = !eventTimeQueue.add();
@@ -29,5 +29,23 @@ public class EventTimeQueueTest extends TestCase
                 Thread.sleep(1100);
             }
         }
+    }
+
+    public void testPerf()
+    {
+
+        final EventTimeQueue eventTimeQueue = new EventTimeQueue(5, 1000, null);
+        long before;
+        long after;
+
+        before = System.currentTimeMillis();
+        for (int index = 0; index < 1000; index++)
+        {
+            eventTimeQueue.add();
+        }
+        after = System.currentTimeMillis();
+        //System.out.println("event add took: " + (after - before) + "ms");
+        assertTrue("performance fails expected <100ms: " + (after - before),
+            after - before < 100);
     }
 }

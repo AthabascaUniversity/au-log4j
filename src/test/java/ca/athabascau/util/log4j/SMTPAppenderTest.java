@@ -84,10 +84,10 @@ public class SMTPAppenderTest extends TestCase
             "\tat ca.montage.banner.web.DispatcherServlet.executeCommand(DispatcherServlet.java:290)\n" +
             "\tat ca.montage.banner.web.DispatcherServlet.doGet(DispatcherServlet.java:111)\n" +
             "\t... 34 more\n");
-        Assert.assertTrue("message not found when it should have been",
-            checkMail(
-                "(?s)(?i).*Existing bug #1810.*student id - " +
-                    "null.*an unknown error occurred.*NullPointerException.*"));
+        Assert.assertTrue("\"Existing bug #1810...\" message not found when " +
+            "it should have been",
+            checkMail("(?s)(?i).*Existing bug #1810.*student id - " +
+                "null.*an unknown error occurred.*NullPointerException.*"));
     }
 
 
@@ -95,7 +95,9 @@ public class SMTPAppenderTest extends TestCase
      * Checks the mail box to determine if a message that looks like the one
      * specified exists.
      *
-     * @param bodyPattern the regex pattern to match.
+     * @param bodyPattern the java compatible regex pattern to match.  This
+     *                    may include anything in the original source of the
+     *                    email message.
      *
      * @return true if the message exists, false otherwise.
      *
@@ -115,9 +117,9 @@ public class SMTPAppenderTest extends TestCase
         for (int index = 0; index < messages.length; index++)
         {
             final InputStream inputStream = messages[index].getInputStream();
-            final String body = IOUtils.toString(inputStream, "UTF-8");
-            if (body.matches(bodyPattern))
-            {
+            final String emailSource = IOUtils.toString(inputStream, "UTF-8");
+            if (emailSource.matches(bodyPattern))
+            {   // email source matches the regex provided
                 return true;
             }
         }

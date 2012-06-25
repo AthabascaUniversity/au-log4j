@@ -9,7 +9,9 @@ import org.apache.log4j.spi.TriggeringEventEvaluator;
 /**
  * Only allows triggering an event, if
  * <p/>
- * - it is an ERROR/FATAL. -
+ * - it is an ERROR/FATAL.
+ * <p/>
+ * - the flood frequency has not been reached
  * <p/>
  * Created :  2012-06-22T15:44 MST
  *
@@ -38,8 +40,9 @@ public class EmailEvaluator implements TriggeringEventEvaluator
     {
         if (eventTimeQueue == null)
         {
-            eventTimeQueue = new EventTimeQueue(smtpAppender.getFloodFrequency(),
-                smtpAppender.getFloodFrequencyMilliseconds());
+            eventTimeQueue = new EventTimeQueue(
+                smtpAppender.getFloodFrequency(),
+                smtpAppender.getFloodFrequencyMilliseconds(), smtpAppender);
         }
 
         final boolean frequencyExceeded = !eventTimeQueue.add();
