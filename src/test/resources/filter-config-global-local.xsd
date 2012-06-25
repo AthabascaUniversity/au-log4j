@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="config">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="filter">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="message"/>
+              <xs:element type="xs:string" name="regex">
+                <xs:annotation>
+                  <xs:documentation>Match where a dot will match a newline as well, and case insensitive</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="log"/>
+            <xs:attribute type="xs:string" name="to"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

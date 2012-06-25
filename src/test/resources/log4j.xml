@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE log4j:configuration SYSTEM
+  "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration debug="false"
+                     xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <!-- NOTE: The order of elements in this log configuration do matter.  If
+  you make changes, ensure that errors are not being printed to catalina.out
+  -->
+  <appender name="smtpAppender"
+            class="ca.athabascau.util.log4j.SMTPAppender">
+    <param name="threshold"
+           value="INFO"/>
+    <param name="BufferSize"
+           value="1"/>
+    <param name="SMTPHost"
+           value="smtp.athabascau.ca"/>
+    <param name="SMTPPort"
+           value="25"/>
+    <param name="SMTPDebug"
+           value="true"/>
+    <param name="From"
+           value="waas-sysmsg@athabascau.ca"/>
+    <param name="To"
+           value="waas-sysmsg@athabascau.ca"/>
+    <param name="SendOnClose"
+           value="true"/>
+    <param name="Subject"
+           value="error log test"/>
+    <param name="Frequency"
+           value="5"/>
+    <param name="FrequencyMilliseconds"
+           value="1000"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern"
+             value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>
+    </layout>
+  </appender>
+  <!--  Log level is ALWAYS DEBUG -->
+  <root>
+    <level value="INFO"/>
+    <appender-ref ref="smtpAppender"/>
+  </root>
+
+</log4j:configuration>
