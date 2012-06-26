@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a88115af-8cd0-4ddd-b9de-ba1451765ccd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/EventTimeQueueTest.java" afterPath="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/EventTimeQueueTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/SMTPAppenderTest.java" afterPath="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/SMTPAppenderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/filter-config.xml" afterPath="$PROJECT_DIR$/src/test/resources/filter-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/log4j.xml" afterPath="$PROJECT_DIR$/src/test/resources/log4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="au-log4j.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +83,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EmailEvaluator.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="EmailEvaluator.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="52" column="2" selection-start="1498" selection-end="1498" vertical-scroll-proportion="0.6852046">
@@ -140,19 +134,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pom.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="50" column="20" selection-start="1566" selection-end="1566" vertical-scroll-proportion="0.0">
+                <state line="47" column="20" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.016649324">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SMTPAppender.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="SMTPAppender.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="983" column="0" selection-start="26852" selection-end="26852" vertical-scroll-proportion="0.8151951">
+                <state line="983" column="0" selection-start="26852" selection-end="26852" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="e#0#27072#0" expanded="true" />
                     <element signature="imports" expanded="true" />
@@ -714,13 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="20" selection-start="1566" selection-end="1566" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/EventTimeQueueTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="0" selection-start="556" selection-end="615" vertical-scroll-proportion="0.0">
@@ -758,9 +745,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="2" selection-start="1498" selection-end="1498" vertical-scroll-proportion="0.6852046">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="983" column="0" selection-start="26852" selection-end="26852" vertical-scroll-proportion="0.8151951">
+        <state line="983" column="0" selection-start="26852" selection-end="26852" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#27072#0" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -768,9 +762,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="2" selection-start="1498" selection-end="1498" vertical-scroll-proportion="0.6852046">
+        <state line="47" column="20" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.016649324">
           <folding />
         </state>
       </provider>
