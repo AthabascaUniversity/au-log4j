@@ -9,7 +9,7 @@
   <appender name="smtpAppender"
             class="ca.athabascau.util.log4j.SMTPAppender">
     <param name="threshold"
-           value="INFO"/>
+           value="ERROR"/>
     <param name="BufferSize"
            value="1"/>
     <param name="SMTPHost"

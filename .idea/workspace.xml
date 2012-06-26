@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a88115af-8cd0-4ddd-b9de-ba1451765ccd" name="Default" comment="- put snapshot on f">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/log4j.xml" afterPath="$PROJECT_DIR$/src/test/resources/log4j.xml" />
     </list>
     <ignored path="au-log4j.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,10 +86,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EmailEvaluator.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="EmailEvaluator.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="53" column="14" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.70094436">
+                <state line="51" column="0" selection-start="1400" selection-end="1400" vertical-scroll-proportion="0.60650575">
                   <folding />
                 </state>
               </provider>
@@ -96,7 +98,7 @@
           <file leaf-file-name="log4j.xml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/resources/log4j.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="40" column="0" selection-start="1646" selection-end="1646" vertical-scroll-proportion="0.0">
+                <state line="11" column="23" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -114,7 +116,7 @@
           <file leaf-file-name="EventTimeQueue.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="80" column="43" selection-start="2939" selection-end="2939" vertical-scroll-proportion="0.0">
+                <state line="44" column="29" selection-start="1521" selection-end="1521" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -129,27 +131,27 @@
           <file leaf-file-name="filter-config.xml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/resources/filter-config.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="73" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0">
+                <state line="27" column="27" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="7" column="16" selection-start="435" selection-end="435" vertical-scroll-proportion="0.109261185">
+                <state line="87" column="47" selection-start="2762" selection-end="2762" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SMTPAppender.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="SMTPAppender.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="983" column="0" selection-start="26852" selection-end="26852" vertical-scroll-proportion="0.0">
+                <state line="969" column="24" selection-start="26607" selection-end="26607" vertical-scroll-proportion="0.52258724">
                   <folding>
-                    <element signature="e#0#27072#0" expanded="true" />
+                    <element signature="e#0#27152#0" expanded="true" />
                     <element signature="imports" expanded="true" />
                   </folding>
                 </state>
@@ -177,13 +179,13 @@
         <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/xml/FilterType.java" />
         <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/xml/ConfigType.java" />
         <option value="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/EventTimeQueueTest.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/log4j.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" />
         <option value="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/SMTPAppenderTest.java" />
         <option value="$PROJECT_DIR$/src/test/resources/filter-config.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/resources/log4j.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" />
       </list>
     </option>
   </component>
@@ -722,13 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/log4j.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1646" selection-end="1646" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/SMTPAppenderTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="0" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
@@ -738,25 +733,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/filter-config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="73" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0">
+        <state line="27" column="27" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="47" selection-start="2762" selection-end="2762" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="43" selection-start="2939" selection-end="2939" vertical-scroll-proportion="0.0">
+        <state line="44" column="29" selection-start="1521" selection-end="1521" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/log4j.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="23" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="983" column="0" selection-start="26852" selection-end="26852" vertical-scroll-proportion="0.0">
+        <state line="969" column="24" selection-start="26607" selection-end="26607" vertical-scroll-proportion="0.52258724">
           <folding>
-            <element signature="e#0#27072#0" expanded="true" />
+            <element signature="e#0#27152#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -764,14 +773,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="14" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.70094436">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="16" selection-start="435" selection-end="435" vertical-scroll-proportion="0.109261185">
+        <state line="51" column="0" selection-start="1400" selection-end="1400" vertical-scroll-proportion="0.60650575">
           <folding />
         </state>
       </provider>

@@ -48,14 +48,18 @@ public class EmailEvaluator implements TriggeringEventEvaluator
         long after;
 
         before = System.currentTimeMillis();
-        final FilterType filter = config.findMatch(event.getRenderedMessage());
-        after = System.currentTimeMillis();
+        boolean log = true;
+        if (config != null)
+        {
+            final FilterType filter = config.findMatch(
+                event.getRenderedMessage());
+            after = System.currentTimeMillis();
 //        LogLog.warn("log match took: " + (after - before) + "ms");
 
-        boolean log = true;
-        if (filter != null)
-        {
-            log = filter.isLog().booleanValue();
+            if (filter != null)
+            {
+                log = filter.isLog().booleanValue();
+            }
         }
 
         return !frequencyExceeded && event.getLevel().isGreaterOrEqual(

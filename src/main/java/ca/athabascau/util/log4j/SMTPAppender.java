@@ -467,10 +467,13 @@ public class SMTPAppender extends AppenderSkeleton
         try
         {
             String body = formatBody();
-            final FilterType filter = config.findMatch(body);
-            if (filter != null && filter.isLog().booleanValue())
-            {   // add message defined in config
-                body = filter.getMessage() + "\n\n" + body;
+            if (config != null)
+            {
+                final FilterType filter = config.findMatch(body);
+                if (filter != null && filter.isLog().booleanValue())
+                {   // add message defined in config
+                    body = filter.getMessage() + "\n\n" + body;
+                }
             }
             boolean allAscii = true;
             for (int i = 0; i < body.length() && allAscii; i++)
