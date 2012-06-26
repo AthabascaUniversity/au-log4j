@@ -144,6 +144,13 @@ public class SMTPAppender extends AppenderSkeleton
             {
                 config = ConfigType.load(XMLUtil.loadXMLFrom(configStream));
             }
+            else
+            {
+                LogLog.warn("filter-config.xml not present in the " +
+                    "classpath, ignoring!!! If you want to use filters with " +
+                    "ca.athabascau.util.log4j.SMTPAppender, then this " +
+                    "config file should be present");
+            }
         }
         catch (SAXException e)
         {

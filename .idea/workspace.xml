@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a88115af-8cd0-4ddd-b9de-ba1451765ccd" name="Default" comment="- put snapshot on f">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" afterPath="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" />
     </list>
     <ignored path="au-log4j.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,10 +85,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EmailEvaluator.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="EmailEvaluator.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="37" column="49" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.40188876">
+                <state line="37" column="49" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -111,10 +112,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EventTimeQueue.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="EventTimeQueue.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="44" column="29" selection-start="1521" selection-end="1521" vertical-scroll-proportion="0.0">
+                <state line="95" column="0" selection-start="3386" selection-end="3386" vertical-scroll-proportion="0.33892968">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -129,7 +130,7 @@
           <file leaf-file-name="filter-config.xml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/resources/filter-config.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="27" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.0">
+                <state line="31" column="58" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -144,12 +145,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SMTPAppender.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="SMTPAppender.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="71" column="50" selection-start="2971" selection-end="2987" vertical-scroll-proportion="0.862423">
+                <state line="151" column="0" selection-start="5398" selection-end="5398" vertical-scroll-proportion="0.5698152">
                   <folding>
-                    <element signature="e#0#27222#0" expanded="true" />
+                    <element signature="e#0#27545#0" expanded="true" />
                     <element signature="imports" expanded="true" />
                   </folding>
                 </state>
@@ -179,11 +180,11 @@
         <option value="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/EventTimeQueueTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/SMTPAppenderTest.java" />
         <option value="$PROJECT_DIR$/src/test/resources/filter-config.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/resources/log4j.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" />
         <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java" />
       </list>
     </option>
   </component>
@@ -722,32 +723,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/SMTPAppenderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="29" selection-start="1521" selection-end="1521" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="47" selection-start="2762" selection-end="2762" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/filter-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="27" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -759,18 +737,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
+    <entry file="file://$PROJECT_DIR$/src/test/resources/filter-config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="49" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.40188876">
+        <state line="31" column="58" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/SMTPAppender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="50" selection-start="2971" selection-end="2987" vertical-scroll-proportion="0.862423">
+        <state line="151" column="0" selection-start="5398" selection-end="5398" vertical-scroll-proportion="0.5698152">
           <folding>
-            <element signature="e#0#27222#0" expanded="true" />
+            <element signature="e#0#27545#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ca/athabascau/util/log4j/SMTPAppenderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EmailEvaluator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="49" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ca/athabascau/util/log4j/EventTimeQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="0" selection-start="3386" selection-end="3386" vertical-scroll-proportion="0.33892968">
+          <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>

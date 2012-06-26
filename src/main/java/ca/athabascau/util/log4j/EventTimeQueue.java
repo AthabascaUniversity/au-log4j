@@ -93,13 +93,6 @@ public class EventTimeQueue
         {
             timestampList.add(newestTime);
             oldestTime = ((Long) timestampList.remove(0)).longValue();
-            if (currentlyFlooding &&
-                newestTime.longValue() - oldestTime > minAgeInMilliseconds)
-            {   // we were flooding, but it's ended, let's clear everything
-                LogLog.warn("Flooding stopped: " +
-                    (newestTime.longValue() - oldestTime));
-                timestampList.clear();
-            }
         }
 
         // if the oldest time hasn't aged enough, then we're flooding.
