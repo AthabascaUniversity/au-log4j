@@ -3,8 +3,23 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ca.athabascau.util</groupId>
   <artifactId>au-log4j</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
+
+  <scm>
+    <developerConnection>
+      scm:svn:svn+ssh://webunit-cvs.athabascau.ca/home/svn/waas-unit/au-util-j/au-log4j/trunk
+    </developerConnection>
+  </scm>
+
+  <distributionManagement>
+    <!-- AU Repository Distribution -->
+    <repository>
+      <id>athabascau-repository</id>
+      <name>AU Repository</name>
+      <url>scpexe://maven.cs.athabascau.ca/var/lib/maven</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -59,6 +74,17 @@
           <source>1.4</source>
           <target>1.4</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <tagBase>
+            svn+ssh://webunit-cvs.athabascau.ca/home/svn/waas-unit/au-util-j/au-log4j/tags
+          </tagBase>
+          <arguments>-Dmaven.test.skip=true</arguments>
+        </configuration>
+        <version>2.1</version>
       </plugin>
     </plugins>
   </build>
