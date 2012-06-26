@@ -140,7 +140,10 @@ public class SMTPAppender extends AppenderSkeleton
             "/filter-config.xml");
         try
         {
-            config = ConfigType.load(XMLUtil.loadXMLFrom(configStream));
+            if (configStream != null)
+            {
+                config = ConfigType.load(XMLUtil.loadXMLFrom(configStream));
+            }
         }
         catch (SAXException e)
         {
