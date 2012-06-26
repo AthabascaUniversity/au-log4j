@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ca.athabascau.util</groupId>
   <artifactId>au-log4j</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>au-log4j</name>
 
   <scm>
     <developerConnection>
-      scm:svn:svn+ssh://webunit-cvs.athabascau.ca/home/svn/waas-unit/au-util-j/au-log4j/tags/au-log4j-0.0.3
+      scm:svn:svn+ssh://webunit-cvs.athabascau.ca/home/svn/waas-unit/au-util-j/au-log4j/trunk
     </developerConnection>
   </scm>
 
