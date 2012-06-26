@@ -4,13 +4,21 @@ import org.apache.log4j.helpers.LogLog;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * Created by IntelliJ IDEA.
+ * Implements a time queue that maintains a list of event times.  If the logging
+ * events are coming too quickly, the add method returns false, and email
+ * logging should be terminated.  If "frequency" logging events are trigger
+ * before "minAgeInMilliseconds", logging should be terminated. The underlying
+ * details do not need to be explained, you can read the source. You may assume
+ * it works, and if it has a bug, YOU (there's no one behind you, I'm talking to
+ * you!) can fix it. :D
  * <p/>
  * Created :  2012-06-22T16:57 MST
  *
@@ -26,14 +34,38 @@ public class EventTimeQueue
     private long minAgeInMilliseconds;
     private boolean currentlyFlooding;
     private SMTPAppender smtpAppender;
+    private String floodEnabledMessage;
 
+    public EventTimeQueue(final SMTPAppender smtpAppender)
+    {
+        timestampList = new ArrayList(frequency);
+        this.frequency = smtpAppender.getFloodFrequency();
+        this.minAgeInMilliseconds =
+            smtpAppender.getFloodFrequencyMilliseconds();
+        this.floodEnabledMessage = smtpAppender.getFloodEnabledMessage();
+        this.smtpAppender = smtpAppender;
+    }
+
+    /**
+     * This constructor is to be used for TESTING ONLY.  It creates an
+     * SMTPAppender to utilize some of it's methods, such as createSession().
+     * However, because it's created here, it is not associated with log4j in
+     * any way.
+     *
+     * @param frequency            the flood frequency
+     * @param minAgeInMilliseconds the flood frequency in milliseconds
+     * @param floodEnabledMessage  the last message to send by email when the
+     *                             frequncy/minAgeInMilliseconds has been
+     *                             reached.
+     */
     public EventTimeQueue(final int frequency, final long minAgeInMilliseconds,
-        final SMTPAppender smtpAppender)
+        final String floodEnabledMessage)
     {
         timestampList = new ArrayList(frequency);
         this.frequency = frequency;
         this.minAgeInMilliseconds = minAgeInMilliseconds;
-        this.smtpAppender = smtpAppender;
+        this.floodEnabledMessage = floodEnabledMessage;
+        smtpAppender = new SMTPAppender();
     }
 
     /**
@@ -45,25 +77,44 @@ public class EventTimeQueue
      */
     public synchronized boolean add()
     {
-        long oldestItem = -1;
+        if (frequency == 0 || minAgeInMilliseconds == 0)
+        {   // flood protection not enabled
+            return true;
+        }
+
+        final boolean alreadyFlooding = currentlyFlooding;
+        long oldestTime = -1;
+        final Long newestTime = new Long(System.currentTimeMillis());
         if (timestampList.size() <= frequency - 1)
         {
-            timestampList.add(new Long(System.currentTimeMillis()));
+            timestampList.add(newestTime);
         }
         else
         {
-            timestampList.add(new Long(System.currentTimeMillis()));
-            oldestItem = ((Long) timestampList.remove(0)).longValue();
+            timestampList.add(newestTime);
+            oldestTime = ((Long) timestampList.remove(0)).longValue();
+            if (currentlyFlooding &&
+                newestTime.longValue() - oldestTime > minAgeInMilliseconds)
+            {   // we were flooding, but it's ended, let's clear everything
+                LogLog.warn("Flooding stopped: " +
+                    (newestTime.longValue() - oldestTime));
+                timestampList.clear();
+            }
         }
 
-//        currentlyFlooding = !;
-/*        if (currentlyFlooding)
+        // if the oldest time hasn't aged enough, then we're flooding.
+        // Essentially, we negate the following to determine we're flooding.
+        // 1. oldestTime does not exist, because we haven't reached frequency
+        // 2. newestTime - oldestTime is older than min age
+        currentlyFlooding = !(oldestTime == -1 ||
+            newestTime.longValue() - oldestTime > minAgeInMilliseconds);
+        if (!alreadyFlooding && currentlyFlooding)
         {
             sendNotification();
-        }*/
-        // the oldest item is older than the minimum age, we're not flooding
-        return oldestItem == -1 ||
-            System.currentTimeMillis() - oldestItem > minAgeInMilliseconds;
+        }
+
+        // the oldest times is older than the minimum age, we're not flooding
+        return !currentlyFlooding;
     }
 
     private void sendNotification()
@@ -79,7 +130,12 @@ public class EventTimeQueue
                 try
                 {
                     msg.setSubject(MimeUtility.encodeText(
-                        smtpAppender.getSubject(), "UTF-8", null));
+                        smtpAppender.getSubject() + " flood protection enabled",
+                        "UTF-8", null));
+                    msg.setContent(smtpAppender.getFloodEnabledMessage(),
+                        "text/plain");
+                    msg.setSentDate(new Date());
+                    Transport.send(msg);
                 }
                 catch (UnsupportedEncodingException ex)
                 {

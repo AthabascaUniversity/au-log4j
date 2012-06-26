@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+  <!--  Please note that the "to" capability is not currently implemented-->
+  <filter log="true">
+    <!-- If you repeat this element a lot of times, and uncomment the bench mark
+    in EmailEvaluator where it calls findMatch(), you'll be able to see
+    approximately how long a match will take if the match is at the bottom of
+    the config file-->
+    <to>waas-sysmsg@athabascau.ca</to>
+    <!-- A custom message to be prefixed before the log in the email, or as part
+     of the message itself-->
+    <message>simulate lots of config items</message>
+    <!-- Any Java compatible regular express -->
+    <regex>(?s)(?i).*blah.*</regex>
+  </filter>
   <filter log="true">
     <!-- The email address to send errors to, which  match this rule -->
     <to>webunit-oros@athabascau.ca,cshd@athabascau.ca</to>

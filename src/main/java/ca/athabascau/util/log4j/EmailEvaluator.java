@@ -40,13 +40,18 @@ public class EmailEvaluator implements TriggeringEventEvaluator
     {
         if (eventTimeQueue == null)
         {
-            eventTimeQueue = new EventTimeQueue(
-                smtpAppender.getFloodFrequency(),
-                smtpAppender.getFloodFrequencyMilliseconds(), smtpAppender);
+            eventTimeQueue = new EventTimeQueue(smtpAppender);
         }
 
         final boolean frequencyExceeded = !eventTimeQueue.add();
+        long before;
+        long after;
+
+        before = System.currentTimeMillis();
         final FilterType filter = config.findMatch(event.getRenderedMessage());
+        after = System.currentTimeMillis();
+//        LogLog.warn("log match took: " + (after - before) + "ms");
+
         boolean log = true;
         if (filter != null)
         {

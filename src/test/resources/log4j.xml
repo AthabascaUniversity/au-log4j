@@ -26,16 +26,18 @@
            value="true"/>
     <param name="Subject"
            value="error log test"/>
-    <param name="Frequency"
+    <!-- frequency per second = Frequency/FrequencyMilliseconds/1000 -->
+    <param name="FloodFrequency"
            value="5"/>
-    <param name="FrequencyMilliseconds"
+    <param name="FloodFrequencyMilliseconds"
            value="1000"/>
+    <param name="FloodEnabledMessage"
+           value="Flood protection enabled, no more errors will be sent until the frequency has dropped below the threshold of 5 messages per 1000ms."/>
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern"
              value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>
     </layout>
   </appender>
-  <!--  Log level is ALWAYS DEBUG -->
   <root>
     <level value="INFO"/>
     <appender-ref ref="smtpAppender"/>

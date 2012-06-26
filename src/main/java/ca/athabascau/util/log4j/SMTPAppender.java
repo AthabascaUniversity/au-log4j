@@ -60,9 +60,6 @@ import java.util.Properties;
  * <p/>
  * Since 1.2.16, SMTP over SSL is supported by setting SMTPProtocol to "smpts".
  * <p/>
- * CRITICAL Automatic buffer size bumping in the event of over logging.  Add a
- * configurable maximum buffer size.
- * <p/>
  * CRITICAL Allow matching to change the message and recipients
  * <p/>
  * CRITICAL before adding to cyclic buffer, create a new event subclass which
@@ -106,8 +103,9 @@ public class SMTPAppender extends AppenderSkeleton
 
     protected TriggeringEventEvaluator evaluator;
     private ConfigType config;
-    private int frequency;
-    private long frequencyMilliseconds;
+    private int floodFrequency;
+    private long floodFrequencyMilliseconds;
+    private String floodEnabledMessage;
 
 
     /**
@@ -920,53 +918,74 @@ public class SMTPAppender extends AppenderSkeleton
     }
 
     /**
-     * The flood frequency.  See {@link #setFloodFrequencyMilliseconds(long)}
-     * for information on the frequency period.
+     * The floodFrequency.  See {@link #setFloodFrequencyMilliseconds(long)} for
+     * information on the floodFrequency period.
      * <p/>
-     * When more than "frequency" logging events have occurred before
-     * "frequencyMilliseconds" has been reached, as described in @{link
+     * When more than "floodFrequency" logging events have occurred before
+     * "floodFrequencyMilliseconds" has been reached, as described in @{link
      * #setFloodFrequencyMilliseconds}, then email logging is terminated until
-     * the frequency drops below the configured values.
+     * the floodFrequency drops below the configured values.  Before termination
+     * one last messages is sent out with the "floodEnabledMessage" as the body,
+     * and the subject slightly modified.
      * <p/>
-     * <strong>Default:</strong> 100 (resulting in 100 logging events per
-     * minute) if the frequency millisecond value is not changed from it's
-     * default value of 60000 ms.
+     * <strong>Default:</strong> 0, resulting in no flood protection
      *
-     * @param frequency the frequency at which to prevent emailing.
+     * @param frequency the floodFrequency at which to prevent emailing.
      */
     public final void setFloodFrequency(final int frequency)
     {
-        this.frequency = frequency;
+        this.floodFrequency = frequency;
     }
 
     public final int getFloodFrequency()
     {
-        return frequency == 0 ? DEFAULT_FREQUENCY : frequency;
+        return floodFrequency == 0 ? DEFAULT_FREQUENCY : floodFrequency;
     }
 
     /**
-     * The number of milliseconds in which the frequency defined in {@link
+     * The number of milliseconds in which the floodFrequency defined in {@link
      * #setFloodFrequency(int)} may occur before email logging is terminated.
      * <p/>
-     * <strong>Default:</strong> 60000 (one minute)
+     * <strong>Default:</strong> 0, resulting in no flood protection
      *
-     * @param frequencyMilliseconds the number of milliseconds.
+     * @param frequencyMilliseconds the number of milliseconds in which a
+     *                              maximum of {@link #setFloodFrequency(int)}
+     *                              logging events may occur.
      */
     public final void setFloodFrequencyMilliseconds(
         final long frequencyMilliseconds)
     {
-        this.frequencyMilliseconds = frequencyMilliseconds;
+        this.floodFrequencyMilliseconds = frequencyMilliseconds;
     }
 
     public final long getFloodFrequencyMilliseconds()
     {
-        return frequencyMilliseconds == 0 ? DEFAULT_FREQUENCY_MS :
-            frequencyMilliseconds;
+        return floodFrequencyMilliseconds == 0 ? DEFAULT_FREQUENCY_MS :
+            floodFrequencyMilliseconds;
     }
 
     public ConfigType getConfig()
     {
         return config;
+    }
+
+    /**
+     * @return the message
+     *
+     * @see {@link #setFloodEnabledMessage(String)}
+     */
+    public String getFloodEnabledMessage()
+    {
+        return floodEnabledMessage;
+    }
+
+    /**
+     * The body of the email to be sent just as flood protection is enabled;
+     * this will be the last message sent until the flooding stops.
+     */
+    public void setFloodEnabledMessage(final String floodEnabledMessage)
+    {
+        this.floodEnabledMessage = floodEnabledMessage;
     }
 }
 
