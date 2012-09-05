@@ -112,22 +112,5 @@
         <maven.test.skip>false</maven.test.skip>
       </properties>
     </profile>
-    <profile>
-      <!-- enable to debug a test, you must enable both the test
-  profile and this one -->
-      <id>dtest</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <forkMode>once</forkMode>
-              <debugForkedProcess>true</debugForkedProcess>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
   </profiles>
 </project>
