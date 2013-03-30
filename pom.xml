@@ -22,25 +22,47 @@ See the COPYING file for more information.
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ca.athabascau.util</groupId>
+  <groupId>com.github.trentonadams</groupId>
   <artifactId>au-log4j</artifactId>
   <version>0.0.6-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>au-log4j</name>
+  <description>Log4J appender which can email out logs (usually errors) to
+  a specified email address.  Configurable to </description>
+
+  <licenses>
+    <license>
+      <name>LGPL</name>
+      <url>http://www.gnu.org/licenses</url>
+    </license>
+  </licenses>
 
   <scm>
+    <connection>scm:git:git://github.com/TrentonAdams/au-log4j.git</connection>
     <developerConnection>
-      scm:svn:svn+ssh://webunit-cvs.athabascau.ca/home/svn/waas-unit/au-util-j/au-log4j/trunk
+      scm:git:ssh://git@github.com/TrentonAdams/au-log4j.git
     </developerConnection>
   </scm>
 
+  <developers>
+    <developer>
+      <name>Trenton D. Adams</name>
+      <email>trent.gpg@trentonadams.ca</email>
+      <id>trent</id>
+    </developer>
+  </developers>
+
   <distributionManagement>
-    <!-- AU Repository Distribution -->
     <repository>
-      <id>athabascau-repository</id>
-      <name>AU Repository</name>
-      <url>scpexe://maven.cs.athabascau.ca/var/lib/maven</url>
+      <id>sonatype-nexus-staging</id>
+      <name>sonatype nexus staging</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>sonatype nexus snapshot</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <dependencies>
@@ -109,19 +131,55 @@ See the COPYING file for more information.
         </configuration>
         <version>2.1</version>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
     <profile>
-      <!-- enable to debug a test, you must enable both the test
-  profile and this one -->
-      <id>dtest</id>
+      <id>test</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <maven.test.skip>false</maven.test.skip>
+      </properties>
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.5</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>dtest</id>
+      <properties>
+        <maven.test.skip>false</maven.test.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.5</version>
             <configuration>
               <forkMode>once</forkMode>
               <debugForkedProcess>true</debugForkedProcess>
@@ -129,9 +187,35 @@ See the COPYING file for more information.
           </plugin>
         </plugins>
       </build>
-      <properties>
-        <maven.test.skip>false</maven.test.skip>
-      </properties>
     </profile>
+
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
   </profiles>
 </project>

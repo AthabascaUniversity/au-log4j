@@ -54,7 +54,7 @@ public class SMTPAppenderTest extends TestCase
         session = Session.getInstance(new Properties());
         session.setDebug(false);
         store = session.getStore("pop3");
-        store.connect("athabascau.ca", "waas-sysmsg", "anything");
+        store.connect("example.com", "me", "anything");
         folder = store.getFolder("INBOX");
         folder.open(Folder.READ_WRITE);
     }

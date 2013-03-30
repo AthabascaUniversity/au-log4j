@@ -1,22 +1,22 @@
 /**
  * This file is part of the au-log4j package; aka Athabasca University log4j
  * addons.
- * 
+ *
  * Copyright Trenton D. Adams <trenton daught d daught adams at gmail daught ca>
- * 
+ *
  * au-log4j is free software: you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or (at your
  * option) any later version.
- * 
+ *
  * au-log4j is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
  * License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public 
  * License along with au-log4j.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * See the COPYING file for more information.
  */
 package ca.athabascau.util.log4j;
@@ -26,7 +26,8 @@ import junit.framework.TestCase;
 
 /**
  * Test the EventTimeQueue, to ensure that it is returning false when the
- * frequency has been exceeded.
+ * frequency has been exceeded.  Also test to ensure the performance is
+ * adequate, otherwise it could slow down log4j.
  * <p/>
  * Created :  2012-06-22T16:54 MST
  *

@@ -27,7 +27,7 @@ See the COPYING file for more information.
     in EmailEvaluator where it calls findMatch(), you'll be able to see
     approximately how long a match will take if the match is at the bottom of
     the config file-->
-    <to>waas-sysmsg@athabascau.ca</to>
+    <to>me@example.com</to>
     <!-- A custom message to be prefixed before the log in the email, or as part
      of the message itself-->
     <message>simulate lots of config items</message>
@@ -36,19 +36,19 @@ See the COPYING file for more information.
   </filter>
   <filter log="true">
     <!-- The email address to send errors to, which  match this rule -->
-    <to>webunit-oros@athabascau.ca,cshd@athabascau.ca</to>
+    <to>newme@example.com</to>
     <!-- A custom message to be prefixed before the log in the email, or as part
      of the message itself-->
-    <message>Existing bug #562 at https://bugs.athabascau.ca/bugzilla/show_bug.cgi?id=562</message>
+    <message>Existing bug #562 at https://bugs.example.com/bugzilla/show_bug.cgi?id=562</message>
     <!-- Any Java compatible regular expression to match the log entry.  Be
     sure to support multiple lines.  e.g. use (?s)(?i) -->
     <regex>(?s)(?i).*EmailDaemon.*Illegal address in string.*</regex>
   </filter>
   <filter log="true">
-    <to>waas-sysmsg@athabascau.ca</to>
+    <to>me@example.com</to>
     <!-- A custom message to be prefixed before the log in the email, or as part
      of the message itself-->
-    <message>Existing bug #1810 at https://bugs.athabascau.ca/bugzilla/show_bug.cgi?id=1810</message>
+    <message>Existing bug #1810 at https://bugs.example.com/bugzilla/show_bug.cgi?id=1810</message>
     <!-- Any Java compatible regular express -->
     <regex>(?s)(?i).*student id - null.*an unknown error occurred.*NullPointerException.*</regex>
   </filter>
