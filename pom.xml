@@ -28,7 +28,8 @@ See the COPYING file for more information.
   <packaging>jar</packaging>
   <name>au-log4j</name>
   <description>Log4J appender which can email out logs (usually errors) to
-  a specified email address.  Configurable to </description>
+  a specified email address.  Configurable to filter out some *known*
+  errors so that they are not emailed, or send them to different users. </description>
 
   <licenses>
     <license>
