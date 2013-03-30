@@ -37,13 +37,6 @@ See the COPYING file for more information.
     </license>
   </licenses>
 
-  <scm>
-    <connection>scm:git:git://github.com/TrentonAdams/au-log4j.git</connection>
-    <developerConnection>
-      scm:git:ssh://git@github.com/TrentonAdams/au-log4j.git
-    </developerConnection>
-  </scm>
-
   <developers>
     <developer>
       <name>Trenton D. Adams</name>
@@ -51,6 +44,13 @@ See the COPYING file for more information.
       <id>trent</id>
     </developer>
   </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/TrentonAdams/au-log4j.git</connection>
+    <developerConnection>
+      scm:git:ssh://git@github.com/TrentonAdams/au-log4j.git
+    </developerConnection>
+  </scm>
 
   <distributionManagement>
     <repository>
