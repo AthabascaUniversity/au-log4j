@@ -202,7 +202,7 @@ See the COPYING file for more information.
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
