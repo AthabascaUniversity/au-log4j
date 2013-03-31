@@ -35,6 +35,12 @@ import junit.framework.TestCase;
  */
 public class EventTimeQueueTest extends TestCase
 {
+    /**
+     * Tests that the flood protection queue is functioning correctly based on
+     * the number of messages, and the time specified.
+     *
+     * @throws InterruptedException
+     */
     public void testFlood() throws InterruptedException
     {
         // Allow a maximum of 5 events per second
@@ -54,6 +60,11 @@ public class EventTimeQueueTest extends TestCase
         }
     }
 
+    /**
+     * Verifies that the performance of the event queue is within acceptable
+     * parameters; namely 100ms.  Note, when running from within an IDE, this
+     * test may fail.
+     */
     public void testPerf()
     {
 

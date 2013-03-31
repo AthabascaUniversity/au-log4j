@@ -26,24 +26,15 @@ See the COPYING file for more information.
     <!-- If you repeat this element a lot of times, and uncomment the bench mark
     in EmailEvaluator where it calls findMatch(), you'll be able to see
     approximately how long a match will take if the match is at the bottom of
-    the config file-->
-    <to>me@example.com</to>
+    the config file-->                                                             0
+    <to>you@example.com</to>
     <!-- A custom message to be prefixed before the log in the email, or as part
      of the message itself-->
     <message>simulate lots of config items</message>
     <!-- Any Java compatible regular express -->
-    <regex>(?s)(?i).*blah.*</regex>
+    <regex>(?s)(?i).*This error will go to you@example.com.*</regex>
   </filter>
-  <filter log="true">
-    <!-- The email address to send errors to, which  match this rule -->
-    <to>newme@example.com</to>
-    <!-- A custom message to be prefixed before the log in the email, or as part
-     of the message itself-->
-    <message>Existing bug #562 at https://bugs.example.com/bugzilla/show_bug.cgi?id=562</message>
-    <!-- Any Java compatible regular expression to match the log entry.  Be
-    sure to support multiple lines.  e.g. use (?s)(?i) -->
-    <regex>(?s)(?i).*EmailDaemon.*Illegal address in string.*</regex>
-  </filter>
+
   <filter log="true">
     <to>me@example.com</to>
     <!-- A custom message to be prefixed before the log in the email, or as part
@@ -52,4 +43,11 @@ See the COPYING file for more information.
     <!-- Any Java compatible regular express -->
     <regex>(?s)(?i).*student id - null.*an unknown error occurred.*NullPointerException.*</regex>
   </filter>
+
+  <filter log="false">
+    <to>you@example.com</to>
+    <message>not logged</message>
+    <regex>(?s)(?i).*Should not be logged to you@example.com.*</regex>
+  </filter>
+
 </config>

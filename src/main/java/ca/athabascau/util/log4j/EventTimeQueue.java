@@ -138,7 +138,7 @@ public class EventTimeQueue
 
         try
         {
-            smtpAppender.addressMessage(msg);
+            smtpAppender.addressMessage(msg, null);
             if (smtpAppender.getSubject() != null)
             {
                 try

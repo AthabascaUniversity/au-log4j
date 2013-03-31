@@ -81,8 +81,6 @@ import java.util.Properties;
  * <p/>
  * Since 1.2.16, SMTP over SSL is supported by setting SMTPProtocol to "smpts".
  * <p/>
- * CRITICAL Allow matching to change the message and recipients
- * <p/>
  * CRITICAL before adding to cyclic buffer, create a new event subclass which
  * accepts message, recipient, etc.
  *
@@ -92,8 +90,15 @@ import java.util.Properties;
  */
 public class SMTPAppender extends AppenderSkeleton
 {
-    public static final int DEFAULT_FREQUENCY = 100;
+    /**
+     * Five messages in 60 seconds
+     */
+    public static final int DEFAULT_FREQUENCY = 5;
+    /**
+     * Five messages in 60 seconds
+     */
     public static final int DEFAULT_FREQUENCY_MS = 60000;
+
     private String to;
     /**
      * Comma separated list of cc recipients.
@@ -198,27 +203,6 @@ public class SMTPAppender extends AppenderSkeleton
         final Session session = createSession();
         msg = new MimeMessage(session);
 
-        try
-        {
-            addressMessage(msg);
-            if (subject != null)
-            {
-                try
-                {
-                    msg.setSubject(MimeUtility.encodeText(subject, "UTF-8",
-                        null));
-                }
-                catch (UnsupportedEncodingException ex)
-                {
-                    LogLog.error("Unable to encode SMTP subject", ex);
-                }
-            }
-        }
-        catch (MessagingException e)
-        {
-            LogLog.error("Could not activate SMTPAppender options.", e);
-        }
-
         if (evaluator instanceof OptionHandler)
         {
             ((OptionHandler) evaluator).activateOptions();
@@ -228,12 +212,15 @@ public class SMTPAppender extends AppenderSkeleton
     /**
      * Address message.
      *
+     *
      * @param msg message, may not be null.
      *
+     * @param filter
      * @throws MessagingException thrown if error addressing message.
      * @since 1.2.14
      */
-    protected void addressMessage(final Message msg) throws MessagingException
+    protected void addressMessage(final Message msg, FilterType filter)
+        throws MessagingException
     {
         if (from != null)
         {
@@ -250,21 +237,39 @@ public class SMTPAppender extends AppenderSkeleton
             msg.setReplyTo(parseAddress(replyTo));
         }
 
-        if (to != null && to.length() > 0)
-        {
-            msg.setRecipients(Message.RecipientType.TO, parseAddress(to));
-        }
-
-        //Add CC receipients if defined.
+        //Add CC recipients if defined.
         if (cc != null && cc.length() > 0)
         {
             msg.setRecipients(Message.RecipientType.CC, parseAddress(cc));
         }
 
-        //Add BCC receipients if defined.
+        //Add BCC recipients if defined.
         if (bcc != null && bcc.length() > 0)
         {
             msg.setRecipients(Message.RecipientType.BCC, parseAddress(bcc));
+        }
+
+        if (filter != null)
+        {
+            msg.setRecipients(Message.RecipientType.TO, parseAddress(
+                filter.getTo()));
+        }
+        else if (to != null && to.length() > 0)
+        {
+            msg.setRecipients(Message.RecipientType.TO, parseAddress(to));
+        }
+
+        if (subject != null)
+        {
+            try
+            {
+                msg.setSubject(MimeUtility.encodeText(subject, "UTF-8",
+                    null));
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                LogLog.error("Unable to encode SMTP subject", ex);
+            }
         }
     }
 
@@ -498,14 +503,16 @@ public class SMTPAppender extends AppenderSkeleton
         try
         {
             String body = formatBody();
+            FilterType filter = null;
             if (config != null)
             {
-                final FilterType filter = config.findMatch(body);
+                filter = config.findMatch(body);
                 if (filter != null && filter.isLog().booleanValue())
                 {   // add message defined in config
                     body = filter.getMessage() + "\n\n" + body;
                 }
             }
+
             boolean allAscii = true;
             for (int i = 0; i < body.length() && allAscii; i++)
             {
@@ -551,6 +558,7 @@ public class SMTPAppender extends AppenderSkeleton
 
             final Multipart mp = new MimeMultipart();
             mp.addBodyPart(part);
+            addressMessage(msg, filter);
             msg.setContent(mp);
 
             msg.setSentDate(new Date());
