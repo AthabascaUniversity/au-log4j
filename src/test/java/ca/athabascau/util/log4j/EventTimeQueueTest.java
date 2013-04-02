@@ -52,7 +52,7 @@ public class EventTimeQueueTest extends TestCase
     {
         // Allow a maximum of 5 events per second
         final EventTimeQueue eventTimeQueue = new EventTimeQueue(5, 1000,
-            "Flood protection enabled");
+            "Flood protection activated");
         for (int index = 0; index < 10; index++)
         {
             final boolean exceeded = !eventTimeQueue.add();
