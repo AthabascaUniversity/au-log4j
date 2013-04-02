@@ -175,6 +175,8 @@ public class SMTPAppenderTest extends TestCase
             checkMail("(?s)(?i).*Test multiple recipients.*", "them"));
     }
 
+    // CRITICAL implement test for filterConfig parameter
+
     /**
      * Checks the mail box to determine if a message that looks like the one
      * specified exists.

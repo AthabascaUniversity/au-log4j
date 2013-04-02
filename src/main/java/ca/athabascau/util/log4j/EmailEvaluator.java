@@ -8,8 +8,6 @@ import org.apache.log4j.spi.TriggeringEventEvaluator;
 /**
  * Only allows triggering an event, if
  * <p/>
- * - it is an ERROR/FATAL.
- * <p/>
  * - the flood frequency has not been reached
  * <p/>
  * Created :  2012-06-22T15:44 MST
@@ -18,7 +16,6 @@ import org.apache.log4j.spi.TriggeringEventEvaluator;
  */
 public class EmailEvaluator implements TriggeringEventEvaluator
 {
-    private ConfigType config;
     private EventTimeQueue eventTimeQueue;
     private SMTPAppender smtpAppender;
 
@@ -26,7 +23,6 @@ public class EmailEvaluator implements TriggeringEventEvaluator
     public EmailEvaluator(final SMTPAppender smtpAppender)
     {
         this.smtpAppender = smtpAppender;
-        config = smtpAppender.getConfig();
     }
 
     /**
@@ -39,23 +35,19 @@ public class EmailEvaluator implements TriggeringEventEvaluator
      */
     public boolean isTriggeringEvent(final LoggingEvent event)
     {
+        ConfigType config = smtpAppender.getConfig();
         if (eventTimeQueue == null)
         {
             eventTimeQueue = new EventTimeQueue(smtpAppender);
         }
 
         final boolean frequencyExceeded = !eventTimeQueue.add();
-        long before;
-        long after;
 
-        before = System.currentTimeMillis();
         boolean log = true;
         if (config != null)
         {
             final FilterType filter = config.findMatch(
                 event.getRenderedMessage());
-            after = System.currentTimeMillis();
-//        LogLog.warn("log match took: " + (after - before) + "ms");
 
             if (filter != null)
             {

@@ -113,6 +113,7 @@ public class SMTPAppender extends AppenderSkeleton
     private int floodFrequency;
     private long floodFrequencyMilliseconds;
     private String floodEnabledMessage;
+    private String filterConfig;
 
     /**
      * Specifically for testing, so that we can run multiple tests in a row
@@ -160,38 +161,6 @@ public class SMTPAppender extends AppenderSkeleton
                 LogManager.shutdown();
             }
         });
-        final InputStream configStream = SMTPAppender.class.getResourceAsStream(
-            "/filter-config.xml");
-        try
-        {
-            if (configStream != null)
-            {
-                config = ConfigType.load(XMLUtil.loadXMLFrom(configStream));
-            }
-            else
-            {
-                LogLog.warn("filter-config.xml not present in the " +
-                    "classpath, ignoring!!! If you want to use filters with " +
-                    "ca.athabascau.util.log4j.SMTPAppender, then this " +
-                    "config file should be present");
-            }
-        }
-        catch (SAXException e)
-        {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-        catch (IOException e)
-        {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-        catch (ParserConfigurationException e)
-        {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-        catch (JAXBException e)
-        {
-            throw new IllegalArgumentException(e.getMessage());
-        }
     }
 
 
@@ -1030,6 +999,17 @@ public class SMTPAppender extends AppenderSkeleton
     public void setFloodEnabledMessage(final String floodEnabledMessage)
     {
         this.floodEnabledMessage = floodEnabledMessage;
+    }
+
+    public String getFilterConfig()
+    {
+        return filterConfig;
+    }
+
+    public void setFilterConfig(final String filterConfig)
+    {
+        this.filterConfig = filterConfig;
+        config = ConfigType.load(filterConfig);
     }
 }
 
