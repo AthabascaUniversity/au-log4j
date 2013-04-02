@@ -133,6 +133,12 @@ public class SMTPAppender extends AppenderSkeleton
     private long floodFrequencyMilliseconds;
     private String floodEnabledMessage;
 
+    /**
+     * Specifically for testing, so that we can run multiple tests in a row
+     * without running into flood protection issues.
+     */
+    private static boolean floodProtectionDisabled;
+
 
     /**
      * The default constructor will instantiate the appender with a {@link
@@ -143,6 +149,17 @@ public class SMTPAppender extends AppenderSkeleton
         super();
         initialize();
         this.evaluator = new EmailEvaluator(this);
+    }
+
+    public static boolean isFloodProtectionDisabled()
+    {
+        return floodProtectionDisabled;
+    }
+
+    public static void setFloodProtectionDisabled(
+        final boolean floodProtectionDisabled)
+    {
+        SMTPAppender.floodProtectionDisabled = floodProtectionDisabled;
     }
 
     /**
@@ -566,11 +583,11 @@ public class SMTPAppender extends AppenderSkeleton
         }
         catch (MessagingException e)
         {
-            LogLog.error("Error occured while sending e-mail notification.", e);
+            LogLog.error("Error occurred while sending e-mail notification.", e);
         }
         catch (RuntimeException e)
         {
-            LogLog.error("Error occured while sending e-mail notification.", e);
+            LogLog.error("Error occurred while sending e-mail notification.", e);
         }
     }
 

@@ -40,9 +40,9 @@ See the COPYING file for more information.
     <param name="SMTPDebug"
            value="true"/>
     <param name="From"
-           value="me@example.com"/>
+           value="primary@example.com"/>
     <param name="To"
-           value="me@example.com"/>
+           value="primary@example.com"/>
     <param name="SendOnClose"
            value="true"/>
     <param name="Subject"
@@ -53,7 +53,7 @@ See the COPYING file for more information.
     <param name="FloodFrequencyMilliseconds"
            value="1000"/>
     <param name="FloodEnabledMessage"
-           value="Flood protection enabled, no more errors will be sent until the frequency has dropped below the threshold of 5 messages per 1000ms."/>
+           value="Mail logging flood protection activated, no more errors will be sent until the frequency has dropped below the threshold of 5 messages per 1000ms."/>
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern"
              value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>

@@ -50,4 +50,9 @@ See the COPYING file for more information.
     <regex>(?s)(?i).*Should not be logged to you@example.com.*</regex>
   </filter>
 
+  <filter log="true">
+    <to>you@example.com,them@example.com</to>
+    <message>you and them</message>
+    <regex>(?s)(?i).*Test multiple recipients.*</regex>
+  </filter>
 </config>

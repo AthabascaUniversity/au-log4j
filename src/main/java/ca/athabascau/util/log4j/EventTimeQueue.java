@@ -23,6 +23,7 @@ package ca.athabascau.util.log4j;
 
 import org.apache.log4j.helpers.LogLog;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -122,13 +123,16 @@ public class EventTimeQueue
         // 2. newestTime - oldestTime is older than min age
         currentlyFlooding = !(oldestTime == -1 ||
             newestTime.longValue() - oldestTime > minAgeInMilliseconds);
-        if (!alreadyFlooding && currentlyFlooding)
+        if (!alreadyFlooding && currentlyFlooding &&
+            !SMTPAppender.isFloodProtectionDisabled())
         {
+            LogLog.warn("Flood protection activated");
             sendNotification();
         }
 
         // the oldest times is older than the minimum age, we're not flooding
-        return !currentlyFlooding;
+        // If flood protection is disabled for testing, then just return true
+        return SMTPAppender.isFloodProtectionDisabled() || !currentlyFlooding;
     }
 
     private void sendNotification()
@@ -144,11 +148,13 @@ public class EventTimeQueue
                 try
                 {
                     msg.setSubject(MimeUtility.encodeText(
-                        smtpAppender.getSubject() + " flood protection enabled",
+                        smtpAppender.getSubject() + " flood protection activated",
                         "UTF-8", null));
                     msg.setContent(smtpAppender.getFloodEnabledMessage(),
                         "text/plain");
                     msg.setSentDate(new Date());
+                    msg.setRecipients(Message.RecipientType.TO,
+                        smtpAppender.getTo());
                     Transport.send(msg);
                 }
                 catch (UnsupportedEncodingException ex)

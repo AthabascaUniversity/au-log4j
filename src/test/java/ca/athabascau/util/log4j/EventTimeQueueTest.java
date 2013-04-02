@@ -35,6 +35,13 @@ import junit.framework.TestCase;
  */
 public class EventTimeQueueTest extends TestCase
 {
+    protected void setUp() throws Exception
+    {
+        super.setUp();
+        SMTPAppender.setFloodProtectionDisabled(false);
+
+    }
+
     /**
      * Tests that the flood protection queue is functioning correctly based on
      * the number of messages, and the time specified.
