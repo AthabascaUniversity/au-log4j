@@ -1,24 +1,3 @@
-/**
- * This file is part of the au-log4j package; aka Athabasca University log4j
- * addons.
- * 
- * Copyright Trenton D. Adams <trenton daught d daught adams at gmail daught ca>
- * 
- * au-log4j is free software: you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version.
- * 
- * au-log4j is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
- * License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public 
- * License along with au-log4j.  If not, see <http://www.gnu.org/licenses/>.
- * 
- * See the COPYING file for more information.
- */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -89,6 +68,7 @@ import java.util.Properties;
  * @author Trenton D. Adams
  * @since 1.0
  */
+@SuppressWarnings({"ChainedMethodCall", "UnusedDeclaration"})
 public class SMTPAppender extends AppenderSkeleton
 {
     /**
