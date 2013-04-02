@@ -1,22 +1,22 @@
 /**
  * This file is part of the au-log4j package; aka Athabasca University log4j
  * addons.
- * 
+ *
  * Copyright Trenton D. Adams <trenton daught d daught adams at gmail daught ca>
- * 
+ *
  * au-log4j is free software: you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or (at your
  * option) any later version.
- * 
+ *
  * au-log4j is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
  * License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public 
  * License along with au-log4j.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * See the COPYING file for more information.
  */
 //
@@ -32,6 +32,8 @@ package ca.athabascau.util.log4j.xml;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import javax.xml.bind.annotation.*;
 
 /**
  * <p>Java class for filterType complex type.
@@ -55,19 +57,19 @@ import org.w3c.dom.NodeList;
  * &lt;/complexType>
  * </pre>
  */
-/*@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "filterType", propOrder = {
-    "to", "message", "regex"})*/
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "filter", propOrder = {
+    "to", "message", "regex"})
 public class FilterType
 {
 
-    //    @XmlElement(required = true)
+    @XmlElement(required = true)
     protected String to;
-    //    @XmlElement(required = true)
+    @XmlElement(required = true)
     protected String message;
-    //    @XmlElement(required = true)
+    @XmlElement(required = true)
     protected String regex;
-    //    @XmlAttribute
+    @XmlAttribute
     protected Boolean log;
 
     /**
@@ -159,47 +161,6 @@ public class FilterType
         this.log = value;
     }
 
-
-    public static FilterType load(final Node node)
-    {
-        final FilterType filter = new FilterType();
-        final NamedNodeMap attributes = node.getAttributes();
-        if (attributes.getLength() != 0)
-        {
-            final Node log = attributes.getNamedItem("log");
-            if (log != null)
-            {
-                filter.setLog(Boolean.valueOf(log.getNodeValue()));
-            }
-        }
-        final NodeList children = node.getChildNodes();
-        for (int index = 0; index < children.getLength(); index++)
-        {
-            final Node childNode = children.item(index);
-            if ("to".equals(childNode.getNodeName()))
-            {
-                filter.setTo(getText(childNode));
-            }
-            else if ("message".equals(childNode.getNodeName()))
-            {
-                filter.setMessage(getText(childNode));
-            }
-            else if ("regex".equals(childNode.getNodeName()))
-            {
-                filter.setRegex(getText(childNode));
-            }
-        }
-
-        if (filter.getMessage() == null ||
-            filter.getTo() == null && filter.isLog().booleanValue() ||
-            filter.getRegex() == null)
-        {
-            throw new IllegalArgumentException("One of message, to, or " +
-                "regex elements is missing in the filters-config.xml");
-        }
-
-        return filter;
-    }
 
     private static String getText(final Node node)
     {

@@ -33,6 +33,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,13 +60,14 @@ import java.util.List;
  * &lt;/complexType>
  * </pre>
  */
-/*@SuppressWarnings("PublicMethodNotExposedInInterface")
+@SuppressWarnings("PublicMethodNotExposedInInterface")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "configType", propOrder = {
-    "filters"})*/
+@XmlType(name = "configType", propOrder = {"filters"})
+@XmlRootElement(name = "config")
 public class ConfigType
 {
-    protected List filters;
+    @XmlElement(name="filter")
+    protected List<FilterType> filters;
 
     /**
      * Gets the value of the filters property.
@@ -84,11 +89,11 @@ public class ConfigType
      * Objects of the following type(s) are allowed in the list {@link
      * FilterType }
      */
-    public List getFilters()
+    public List<FilterType> getFilters()
     {
         if (filters == null)
         {
-            filters = new ArrayList();
+            filters = new ArrayList<FilterType>();
         }
         return this.filters;
     }
@@ -105,7 +110,7 @@ public class ConfigType
         getFilters();   // ensure filters is initialized
         for (int index = 0; index < filters.size(); index++)
         {
-            final FilterType filter = (FilterType) filters.get(index);
+            final FilterType filter = filters.get(index);
             if (filter.match(logEntry))
             {
                 return filter;
@@ -120,18 +125,11 @@ public class ConfigType
      *
      * @return the ConfigType instance with all appropriate options set.
      */
-    public static ConfigType load(final Document document)
+    public static ConfigType load(final Document document) throws JAXBException
     {
-        final ConfigType config = new ConfigType();
-        final List filters = config.getFilters();
-        final NodeList nodeList = document.getElementsByTagName("filter");
-        for (int index = 0; index < nodeList.getLength(); index++)
-        {
-            final Node node = nodeList.item(index);
-            filters.add(FilterType.load(node));
-        }
-
-        return config;
+        final JAXBContext jaxbContext = JAXBContext.newInstance(ConfigType.class);
+        final Unmarshaller marshaller = jaxbContext.createUnmarshaller();
+        return (ConfigType) marshaller.unmarshal(document);
     }
 
 }

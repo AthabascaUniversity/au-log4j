@@ -55,6 +55,7 @@ import org.xml.sax.SAXException;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.Date;
@@ -204,6 +205,10 @@ public class SMTPAppender extends AppenderSkeleton
             throw new IllegalArgumentException(e.getMessage());
         }
         catch (ParserConfigurationException e)
+        {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+        catch (JAXBException e)
         {
             throw new IllegalArgumentException(e.getMessage());
         }
