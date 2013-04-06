@@ -6,7 +6,7 @@ The SMTPAppender contained within this library is a copy of the original log4j S
 
 * flood protection 
 ** there are two configuration parameters to determine the maximum number of messages that can occur within a specific time frame.
-** a '''configurable''' message is sent out when flood protection is activated.
+** a '''configurable''' message is sent out when flood protection is activated, and all mail logging stops until the frequency of messages drops below the configured values.
 * the ability to filter log messages based on regular expressions.  Filtering can be done in 2 ways
 ** filter to exclude log messages which match
 ** filter to send log messages to a particular user, or group of users.
