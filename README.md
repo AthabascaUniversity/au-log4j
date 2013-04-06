@@ -1,0 +1,15 @@
+au-log4j
+========
+
+Log4J appender which can email out logs (usually errors) to a specified email address.  Configurable to filter out some *known* errors so that they are not emailed, or send them to different users.
+
+The SMTPAppender contained within this library is a copy of the original log4j SMTPAppender, with additional enhancements, including...
+
+* flood protection 
+** there are two configuration parameters to determine the maximum number of messages that can occur within a specific time frame.
+** a '''configurable''' message is sent out when flood protection is activated.
+* the ability to filter log messages based on regular expressions.  Filtering can be done in 2 ways
+** filter to exclude log messages which match
+** filter to send log messages to a particular user, or group of users.
+** filter to change the prefixed messages at the top of the email.  For example, if it's a known bug, putting a bug URL in the email message may be useful.  With just a glance, the recipient will know it's an existing problem.
+* hooking the JVM exit, so that any unsent messages are actually sent.  There's a bug in the existing log4j library, which will not actually send emails if the JVM is shutdown.
