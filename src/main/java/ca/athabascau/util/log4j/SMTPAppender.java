@@ -133,11 +133,27 @@ public class SMTPAppender extends AppenderSkeleton
         this.evaluator = new EmailEvaluator(this);
     }
 
+    /**
+     * FOR TESTING ONLY
+     * <p/>
+     * Method to determine if flood protection is disabled for testing purposes.
+     * This is only meant to be used for testing.
+     *
+     * @return true if flood protection is currently disabled.
+     */
     public static boolean isFloodProtectionDisabled()
     {
         return floodProtectionDisabled;
     }
 
+    /**
+     * FOR TESTING ONLY
+     * <p/>
+     * Set the flood protection to disabled or enabled.  true for disabled,
+     * false for enabled.
+     *
+     * @param floodProtectionDisabled true if flood protection is disabled.
+     */
     public static void setFloodProtectionDisabled(
         final boolean floodProtectionDisabled)
     {
@@ -181,10 +197,11 @@ public class SMTPAppender extends AppenderSkeleton
     }
 
     /**
-     * Address message.
+     * Address message.  If a filter is given, it is used to determine the
+     * <strong>to</strong> address
      *
      * @param msg    message, may not be null.
-     * @param filter
+     * @param filter the filter which matched the log message, if it exists.
      *
      * @throws MessagingException thrown if error addressing message.
      * @since 1.2.14
@@ -433,7 +450,7 @@ public class SMTPAppender extends AppenderSkeleton
         // Note: this code already owns the monitor for this
         // appender. This frees us from needing to synchronize on 'cb'.
 
-        final StringBuffer sbuf = new StringBuffer();
+        final StringBuilder sbuf = new StringBuilder();
         String t = layout.getHeader();
         if (t != null) sbuf.append(t);
         final int len = cb.length();
@@ -513,7 +530,7 @@ public class SMTPAppender extends AppenderSkeleton
                 }
                 catch (Exception ignored)
                 {
-                    final StringBuffer sbuf = new StringBuffer(body);
+                    final StringBuilder sbuf = new StringBuilder(body);
                     for (int i = 0; i < sbuf.length(); i++)
                     {
                         if (sbuf.charAt(i) >= 0x80)
@@ -951,6 +968,11 @@ public class SMTPAppender extends AppenderSkeleton
         this.floodFrequency = frequency;
     }
 
+    /**
+     * @return flood frequency
+     *
+     * @see #setFloodFrequency(int)
+     */
     public final int getFloodFrequency()
     {
         return floodFrequency == 0 ? DEFAULT_FREQUENCY : floodFrequency;
@@ -972,6 +994,11 @@ public class SMTPAppender extends AppenderSkeleton
         this.floodFrequencyMilliseconds = frequencyMilliseconds;
     }
 
+    /**
+     * @return return the flood frequency
+     *
+     * @see #setFloodFrequencyMilliseconds(long)
+     */
     public final long getFloodFrequencyMilliseconds()
     {
         return floodFrequencyMilliseconds == 0 ? DEFAULT_FREQUENCY_MS :
