@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.trentonadams</groupId>
   <artifactId>au-log4j</artifactId>
@@ -7,8 +9,9 @@
   <packaging>jar</packaging>
   <name>au-log4j</name>
   <description>Log4J appender which can email out logs (usually errors) to
-  a specified email address.  Configurable to filter out some *known*
-  errors so that they are not emailed, or send them to different users. </description>
+    a specified email address. Configurable to filter out some *known*
+    errors so that they are not emailed, or send them to different users.
+  </description>
 
   <licenses>
     <license>
@@ -26,7 +29,8 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/AthabascaUniversity/au-log4j.git</connection>
+    <connection>scm:git:git://github.com/AthabascaUniversity/au-log4j.git
+    </connection>
     <developerConnection>
       scm:git:ssh://git@github.com/AthabascaUniversity/au-log4j.git
     </developerConnection>
@@ -122,6 +126,17 @@
         </executions>
       </plugin>
     </plugins>
+
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>LICENSE</include>
+          <include>NOTICE</include>
+        </includes>
+      </resource>
+    </resources>
   </build>
 
   <profiles>
