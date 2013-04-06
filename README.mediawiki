@@ -11,4 +11,4 @@ The SMTPAppender contained within this library is a copy of the original log4j S
 ** filter to exclude log messages which match
 ** filter to send log messages to a particular user, or group of users.
 ** filter to change the prefixed messages at the top of the email.  For example, if it's a known bug, putting a bug URL in the email message may be useful.  With just a glance, the recipient will know it's an existing problem.
-* hooking the JVM exit, so that any unsent messages are actually sent.  There's a bug in the existing log4j library, which will not actually send emails if the JVM is shutdown.
+* hooking the JVM exit, so that any unsent messages are actually sent.  There's a bug in the existing log4j library, which will not actually send emails if the JVM is shutdown; it only sends them when log4j is shutdown.
