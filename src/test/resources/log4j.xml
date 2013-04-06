@@ -8,6 +8,12 @@
   -->
   <appender name="smtpAppender"
             class="ca.athabascau.util.log4j.SMTPAppender">
+    <!-- The following are required parameters, and do not have default values
+    -->
+    <!-- What level of messages should trigger an email? It's best to have ERROR
+    set here, unless you really want a lot of messages.  If you are going
+    to have a lot of messages, you need to set a buffer size, and make
+    sure that your flood protection values are ste to appropriate values -->
     <param name="threshold"
            value="ERROR"/>
     <param name="BufferSize"
@@ -22,24 +28,36 @@
            value="primary@example.com"/>
     <param name="To"
            value="primary@example.com"/>
-    <param name="SendOnClose"
-           value="true"/>
-    <param name="Subject"
-           value="error log test"/>
-    <!-- frequency per second = Frequency/FrequencyMilliseconds/1000 -->
-    <param name="FloodFrequency"
-           value="5"/>
-    <param name="FloodFrequencyMilliseconds"
-           value="1000"/>
-    <param name="FloodEnabledMessage"
-           value="Mail logging flood protection activated, no more errors will be sent until the frequency has dropped below the threshold of 5 messages per 1000ms."/>
-    <!-- relative to the classpath OR an absolute path -->
-    <param name="filterConfig" value="/filter-config.xml"/>
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern"
              value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>
     </layout>
+
+    <!-- The following are not required, and have default values-->
+    <!-- Defaults to false-->
+    <param name="SendOnClose"
+           value="true"/>
+    <!-- no default" -->
+    <param name="Subject"
+           value="error log test"/>
+    <!-- frequency per second = Frequency/FrequencyMilliseconds*1000 -->
+    <!-- defaults to 5 -->
+    <param name="FloodFrequency"
+           value="5"/>
+    <!-- defaults to 60000 (60s) -->
+    <param name="FloodFrequencyMilliseconds"
+           value="1000"/>
+    <!-- Defaults to "Mail logging flood protection activated, no more errors
+    will be sent until the frequency has dropped below the configured
+    frequency" -->
+    <param name="FloodEnabledMessage"
+           value="Mail logging flood protection activated, no more errors will be sent until the frequency has dropped below the frequency of 5 messages per 1000ms."/>
+    <!-- relative to the classpath OR an absolute path.  If relative to the
+    classpath, an initial '/' is REQUIRED.  If not configured, no filtering
+     will be performed-->
+    <param name="filterConfig" value="/filter-config.xml"/>
   </appender>
+
   <root>
     <level value="INFO"/>
     <appender-ref ref="smtpAppender"/>

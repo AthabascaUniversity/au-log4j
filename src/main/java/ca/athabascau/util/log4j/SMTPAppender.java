@@ -112,7 +112,9 @@ public class SMTPAppender extends AppenderSkeleton
     private ConfigType config;
     private int floodFrequency;
     private long floodFrequencyMilliseconds;
-    private String floodEnabledMessage;
+    private String floodEnabledMessage = "Mail logging flood protection " +
+        "activated, no more errors will be sent until the frequency has " +
+        "dropped below the configured threshold";
     private String filterConfig;
 
     /**
