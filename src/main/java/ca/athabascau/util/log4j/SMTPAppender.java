@@ -183,10 +183,9 @@ public class SMTPAppender extends AppenderSkeleton
     /**
      * Address message.
      *
-     *
-     * @param msg message, may not be null.
-     *
+     * @param msg    message, may not be null.
      * @param filter
+     *
      * @throws MessagingException thrown if error addressing message.
      * @since 1.2.14
      */
@@ -537,11 +536,13 @@ public class SMTPAppender extends AppenderSkeleton
         }
         catch (MessagingException e)
         {
-            LogLog.error("Error occurred while sending e-mail notification.", e);
+            LogLog.error("Error occurred while sending e-mail notification.",
+                e);
         }
         catch (RuntimeException e)
         {
-            LogLog.error("Error occurred while sending e-mail notification.", e);
+            LogLog.error("Error occurred while sending e-mail notification.",
+                e);
         }
     }
 
@@ -985,7 +986,7 @@ public class SMTPAppender extends AppenderSkeleton
     /**
      * @return the message
      *
-     * @see {@link #setFloodEnabledMessage(String)}
+     * @see SMTPAppender#setFloodEnabledMessage(String)
      */
     public String getFloodEnabledMessage()
     {
