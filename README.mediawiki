@@ -2,7 +2,7 @@
 
 Log4J appender which can email out logs (usually errors) to a specified email address.  Configurable to filter out some *known* errors so that they are not emailed, or send them to different users.
 
-The SMTPAppender contained within this library is a copy of the original log4j SMTPAppender, with additional enhancements, including...
+The SMTPAppender contained within this library is a copy of the original log4j SMTPAppender, with additional enhancements, including the following.  Note that the src/test/resources/log4j.xml file provides an example with documentation to get you started.
 
 * flood protection 
 ** there are two configuration parameters to determine the maximum number of messages that can occur within a specific time frame.
