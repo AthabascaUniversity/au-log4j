@@ -6,6 +6,7 @@
   <version>1.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>au-log4j</name>
+  <url>https://github.com/AthabascaUniversity/au-log4j</url>
   <description>Log4J appender which can email out logs (usually errors) to
     a specified email address. Configurable to filter out some *known*
     errors so that they are not emailed, or send them to different users.
@@ -27,6 +28,7 @@
   </developers>
 
   <scm>
+    <url>${project.url}</url>
     <connection>scm:git:git://github.com/AthabascaUniversity/au-log4j.git
     </connection>
     <developerConnection>
@@ -81,7 +83,7 @@
     <dependency>
       <groupId>com.github.trentonadams</groupId>
       <artifactId>au-xml-util</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
