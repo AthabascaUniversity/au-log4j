@@ -79,9 +79,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>ca.athabascau.apas.xml</groupId>
-      <artifactId>xml-util</artifactId>
-      <version>0.1.4.1</version>
+      <groupId>com.github.trentonadams</groupId>
+      <artifactId>au-xml-util</artifactId>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
