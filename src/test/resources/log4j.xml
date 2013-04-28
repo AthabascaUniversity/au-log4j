@@ -28,11 +28,6 @@
            value="primary@example.com"/>
     <param name="To"
            value="primary@example.com"/>
-    <layout class="org.apache.log4j.PatternLayout">
-      <param name="ConversionPattern"
-             value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>
-    </layout>
-
     <!-- The following are not required, and have default values-->
     <!-- Defaults to false-->
     <param name="SendOnClose"
@@ -56,6 +51,11 @@
     classpath, an initial '/' is REQUIRED.  If not configured, no filtering
      will be performed-->
     <param name="filterConfig" value="/filter-config.xml"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern"
+             value="%5p | %-40c{2} | %-4L | %d{yyyy-MM-dd}T%d{HH:mm:ss} | %m%n"/>
+    </layout>
+
   </appender>
 
   <root>
