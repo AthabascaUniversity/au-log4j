@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.trentonadams</groupId>
   <artifactId>au-log4j</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>au-log4j</name>
   <url>https://github.com/AthabascaUniversity/au-log4j</url>
