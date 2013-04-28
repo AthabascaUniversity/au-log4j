@@ -125,7 +125,7 @@ public class ConfigType
         }
         catch (JAXBException e)
         {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage(), e);
         }
         catch (FileNotFoundException e)
         {

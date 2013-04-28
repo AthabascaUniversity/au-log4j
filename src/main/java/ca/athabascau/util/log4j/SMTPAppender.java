@@ -248,7 +248,19 @@ public class SMTPAppender extends AppenderSkeleton
             msg.setRecipients(Message.RecipientType.TO, parseAddress(to));
         }
 
-        if (subject != null)
+        if (filter != null && filter.getSubject() != null)
+        {
+            try
+            {
+                msg.setSubject(MimeUtility.encodeText(filter.getSubject(),
+                    "UTF-8", null));
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                LogLog.error("Unable to encode SMTP subject", ex);
+            }
+        }
+        else if (subject != null)
         {
             try
             {

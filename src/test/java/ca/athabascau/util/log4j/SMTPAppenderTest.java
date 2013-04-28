@@ -175,6 +175,48 @@ public class SMTPAppenderTest extends TestCase
             checkMail("(?s)(?i).*Test multiple recipients.*", "them"));
     }
 
+    /*
+     * Tests a message that should be sent to multiple recipients.
+     *
+     * @throws IOException
+     * @throws MessagingException
+     */
+    public void testDifferentSubject()
+        throws IOException, MessagingException, InterruptedException
+    {
+//        Thread.sleep(5000);
+        logger.error("Test special subject");
+
+        Assert.assertTrue("you@example.com message not found when it should" +
+            " have been",
+            checkMail(
+                "(?s)(?i).*Special subject is working.*Test special subject.*",
+                "you"));
+
+        Assert.assertTrue("you@example.com should have a message with " +
+            "subject 'specific error' but it does not",
+            checkSubject("you", "specific error"));
+    }
+
+    private boolean checkSubject(final String username, final String subject)
+        throws MessagingException
+    {
+        final Folder folder = getInbox(username);
+        final Message[] messages = folder.getMessages();
+
+        System.out.println(
+            folder.getURLName() + " has " + messages.length + " messages");
+        for (int index = 0; index < messages.length; index++)
+        {
+            if (subject.equals(messages[index].getSubject()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // CRITICAL implement test for filterConfig parameter
 
     /**
@@ -203,7 +245,7 @@ public class SMTPAppenderTest extends TestCase
         {
             final InputStream inputStream = messages[index].getInputStream();
             final String emailSource = IOUtils.toString(inputStream, "UTF-8");
-//            System.out.println("message: " + emailSource);
+            // System.out.println("message: " + emailSource);
             if (emailSource.matches(bodyPattern))
             {   // email source matches the regex provided
                 return true;

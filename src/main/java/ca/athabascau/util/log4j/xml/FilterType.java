@@ -37,23 +37,30 @@ import javax.xml.bind.annotation.*;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "filter", propOrder = {"to", "message", "regex"})
+/*@XmlType(name = "filter", propOrder = {"to", "message", "regex"})*/
 public class FilterType
 {
 
+    @XmlAttribute
+    protected Boolean log;
     @XmlElement(required = true)
     protected String to;
     @XmlElement(required = true)
     protected String message;
     @XmlElement(required = true)
     protected String regex;
-    @XmlAttribute
-    protected Boolean log;
+    @XmlElement(required = false)
+    protected String subject;
+
+    public FilterType()
+    {
+    }
 
     /**
      * Gets the value of the to property. The email address to send the errors
      * which match this rule to.
      *
+
      * @return possible object is {@link String }
      */
     public String getTo()
@@ -164,5 +171,21 @@ public class FilterType
     public boolean match(final String logEntry)
     {
         return logEntry.matches(regex);
+    }
+
+    /**
+     * Grabs the subject of the message.  If this filter is matched, the
+     * email should have this subject line, or the default if this is null
+     *
+     * @return the subject or null if it does not exist.
+     */
+    public String getSubject()
+    {
+        return subject;
+    }
+
+    public void setSubject(String subject)
+    {
+        this.subject = subject;
     }
 }

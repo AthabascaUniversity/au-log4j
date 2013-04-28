@@ -35,4 +35,10 @@
     <regex>(?s)(?i).*Test multiple recipients.*</regex>
   </filter>
 
+  <filter log="true">
+    <to>you@example.com</to>
+    <message>Special subject is working</message>
+    <regex>(?s)(?i).*Test special subject.*</regex>
+    <subject>specific error</subject>
+  </filter>
 </config>
