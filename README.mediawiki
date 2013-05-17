@@ -16,7 +16,7 @@ The SMTPAppender contained within this library is a copy of the original log4j S
 This library is available in the maven central repo, include the dependency as follows...
      <dependency>
        <groupId>com.github.trentonadams</groupId>
-       <artifactId>au-xml-log4j</artifactId>
+       <artifactId>au-log4j</artifactId>
        <version>1.0.2</version>
        <scope>compile</scope>
      </dependency>
