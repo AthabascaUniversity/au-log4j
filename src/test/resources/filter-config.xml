@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+  <filter log="false">
+    <to>you@example.com</to>
+    <message>not logged</message>
+    <regex>(?s)(?i).*Should not be logged to you@example.com.*</regex>
+  </filter>
+
   <!--  Please note that the "to" capability is not currently implemented-->
   <filter log="true">
     <!-- If you repeat this element a lot of times, and uncomment the bench mark
@@ -23,12 +29,6 @@
     <regex>(?s)(?i).*student id - null.*an unknown error occurred.*NullPointerException.*</regex>
   </filter>
 
-  <filter log="false">
-    <to>you@example.com</to>
-    <message>not logged</message>
-    <regex>(?s)(?i).*Should not be logged to you@example.com.*</regex>
-  </filter>
-
   <filter log="true">
     <to>you@example.com,them@example.com</to>
     <message>you and them</message>
@@ -41,4 +41,5 @@
     <regex>(?s)(?i).*Test special subject.*</regex>
     <subject>specific error</subject>
   </filter>
+
 </config>

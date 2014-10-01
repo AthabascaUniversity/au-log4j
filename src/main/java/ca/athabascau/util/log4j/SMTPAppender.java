@@ -358,7 +358,7 @@ public class SMTPAppender extends AppenderSkeleton
         {
             cb.add(event);
         }
-        if (cb.length() == cb.getMaxSize())
+        if (cb.length() >= cb.getMaxSize())
         {
             sendBuffer();
         }
