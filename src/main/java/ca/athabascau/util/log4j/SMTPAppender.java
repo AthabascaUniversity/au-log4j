@@ -17,7 +17,6 @@
 
 package ca.athabascau.util.log4j;
 
-import ca.athabascau.apas.xml.XMLUtil;
 import ca.athabascau.util.log4j.xml.ConfigType;
 import ca.athabascau.util.log4j.xml.FilterType;
 import org.apache.log4j.AppenderSkeleton;
@@ -30,13 +29,13 @@ import org.apache.log4j.spi.ErrorCode;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.OptionHandler;
 import org.apache.log4j.spi.TriggeringEventEvaluator;
-import org.xml.sax.SAXException;
 
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.xml.bind.JAXBException;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.Date;
 import java.util.Properties;
 
@@ -505,6 +504,8 @@ public class SMTPAppender extends AppenderSkeleton
         {
             String body = formatBody();
             FilterType filter = null;
+            config = ConfigType.load(filterConfig);
+
             if (config != null)
             {
                 filter = config.findMatch(body);
@@ -1021,6 +1022,7 @@ public class SMTPAppender extends AppenderSkeleton
 
     public ConfigType getConfig()
     {
+        config = ConfigType.load(filterConfig);
         return config;
     }
 
@@ -1051,7 +1053,6 @@ public class SMTPAppender extends AppenderSkeleton
     public void setFilterConfig(final String filterConfig)
     {
         this.filterConfig = filterConfig;
-        config = ConfigType.load(filterConfig);
     }
 }
 

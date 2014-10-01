@@ -35,7 +35,7 @@ public class EmailEvaluator implements TriggeringEventEvaluator
      */
     public boolean isTriggeringEvent(final LoggingEvent event)
     {
-        ConfigType config = smtpAppender.getConfig();
+        final ConfigType config = smtpAppender.getConfig();
         if (eventTimeQueue == null)
         {
             eventTimeQueue = new EventTimeQueue(smtpAppender);
