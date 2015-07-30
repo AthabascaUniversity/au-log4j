@@ -42,6 +42,7 @@ public class EmailEvaluator implements TriggeringEventEvaluator
         }
 
         final boolean frequencyExceeded = !eventTimeQueue.add();
+        System.out.println(eventTimeQueue.toString());
 
         boolean log = true;
         if (config != null)

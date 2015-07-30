@@ -135,7 +135,7 @@ public class SMTPAppenderTest extends TestCase
                 "error will go to you@example.com.*",
                 "you"));
         Assert.assertFalse("flood protection message found, that shouldn't " +
-            "happen", checkMail("(?s)(?i).*Flood protection enabled.*1000ms.*",
+            "happen", checkMail("(?s)(?i).*flood protection activated.*1000ms.*",
             "you"));
     }
 
@@ -154,6 +154,32 @@ public class SMTPAppenderTest extends TestCase
             checkMail("(?s)(?i).*Should not be logged to you@example.com.*",
                 "you"));
     }
+
+
+    /**
+     * Tests a message that should not be logged, even when it matches.
+     *
+     * @throws IOException
+     * @throws MessagingException
+     */
+    public void testNotLoggedFloodProtection()
+        throws IOException, MessagingException, InterruptedException
+    {
+        for (int index = 0; index < 30; index++)
+        {
+            logger.error("Should not be logged to you@example.com.");
+        }
+/*        logger.error("this log fires a real logging event");
+        logger.error("this log fires a real logging event");
+        logger.error("this log fires a real logging event");
+        logger.error("this log fires a real logging event");*/
+
+
+        Assert.assertTrue("flood protection message found, that shouldn't " +
+            "happen", checkMail("(?s)(?i).*flood protection activated.*1000ms.*",
+            "primary"));
+    }
+
 
     /*
      * Tests a message that should be sent to multiple recipients.
@@ -245,7 +271,7 @@ public class SMTPAppenderTest extends TestCase
         {
             final InputStream inputStream = messages[index].getInputStream();
             final String emailSource = IOUtils.toString(inputStream, "UTF-8");
-            // System.out.println("message: " + emailSource);
+            System.out.println("message: " + emailSource);
             if (emailSource.matches(bodyPattern))
             {   // email source matches the regex provided
                 return true;

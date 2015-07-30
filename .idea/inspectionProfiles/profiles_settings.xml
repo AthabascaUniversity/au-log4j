@@ -6,13 +6,10 @@
     <info color="f9f5f3">
       <option name="FOREGROUND" value="d9d4d5" />
       <option name="ERROR_STRIPE_COLOR" value="f9f5f3" />
-      <option name="EFFECT_TYPE" value="0" />
       <option name="myName" value="MINOR" />
       <option name="myVal" value="50" />
       <option name="myExternalName" value="MINOR" />
-      <option name="myDefaultAttributes">
-        <option name="EFFECT_TYPE" value="0" />
-      </option>
+      <option name="myDefaultAttributes" />
     </info>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="MINOR" />

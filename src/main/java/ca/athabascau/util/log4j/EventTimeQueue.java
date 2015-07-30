@@ -114,6 +114,18 @@ public class EventTimeQueue
         return SMTPAppender.isFloodProtectionDisabled() || !currentlyFlooding;
     }
 
+    @Override
+    public String toString()
+    {
+        return "EventTimeQueue{" +
+            "frequency=" + frequency +
+            ", timestampList=" + timestampList +
+            ", minAgeInMilliseconds=" + minAgeInMilliseconds +
+            ", currentlyFlooding=" + currentlyFlooding +
+            ", floodEnabledMessage='" + floodEnabledMessage + '\'' +
+            '}';
+    }
+
     private void sendNotification()
     {
         final Session session = smtpAppender.createSession();
