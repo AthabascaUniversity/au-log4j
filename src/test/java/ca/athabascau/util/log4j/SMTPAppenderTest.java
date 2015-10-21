@@ -165,6 +165,7 @@ public class SMTPAppenderTest extends TestCase
     public void testNotLoggedFloodProtection()
         throws IOException, MessagingException, InterruptedException
     {
+//        Mailbox.clearAll();
         for (int index = 0; index < 30; index++)
         {
             logger.error("Should not be logged to you@example.com.");
@@ -175,7 +176,7 @@ public class SMTPAppenderTest extends TestCase
         logger.error("this log fires a real logging event");*/
 
 
-        Assert.assertTrue("flood protection message found, that shouldn't " +
+        Assert.assertFalse("flood protection message found, that shouldn't " +
             "happen", checkMail("(?s)(?i).*flood protection activated.*1000ms.*",
             "primary"));
     }
