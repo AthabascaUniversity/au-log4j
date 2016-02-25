@@ -401,7 +401,7 @@ public class SMTPAppender extends AppenderSkeleton
     public synchronized void close()
     {
         this.closed = true;
-        if (sendOnClose)
+        if (sendOnClose && cb.length() > 0)
         {
             sendBuffer();
         }
