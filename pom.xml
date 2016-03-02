@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.trentonadams</groupId>
   <artifactId>au-log4j</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>au-log4j</name>
   <url>https://github.com/AthabascaUniversity/au-log4j</url>
@@ -34,7 +34,7 @@
     <developerConnection>
       scm:git:ssh://git@github.com/AthabascaUniversity/au-log4j.git
     </developerConnection>
-    <tag>au-log4j-1.0.4</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
