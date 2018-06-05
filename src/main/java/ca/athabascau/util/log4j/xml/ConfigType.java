@@ -8,6 +8,7 @@
 
 package ca.athabascau.util.log4j.xml;
 
+import org.apache.commons.lang3.text.StrSubstitutor;
 import org.apache.log4j.helpers.LogLog;
 
 import javax.xml.bind.JAXBContext;
@@ -17,8 +18,8 @@ import javax.xml.bind.annotation.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -42,12 +43,54 @@ import java.util.List;
  */
 @SuppressWarnings("PublicMethodNotExposedInInterface")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "configType", propOrder = {"filters"})
+@XmlType(name = "configType", propOrder = {"filters", "vars"})
 @XmlRootElement(name = "config")
 public class ConfigType
 {
     @XmlElement(name = "filter")
     protected List<FilterType> filters;
+    @XmlElement(name = "var")
+    private List<VarType> vars;
+
+    @XmlTransient
+    private StrSubstitutor sub;
+
+    /**
+     * @param filterConfig
+     *
+     * @return the ConfigType instance with all appropriate options set.
+     */
+    public static ConfigType load(final String filterConfig)
+    {
+        InputStream configStream = ConfigType.class.getResourceAsStream(
+            filterConfig);
+        try
+        {
+            if (configStream == null)
+            {
+                configStream = new FileInputStream(filterConfig);
+            }
+
+            // config file exists
+            final JAXBContext jaxbContext = JAXBContext.newInstance(
+                ConfigType.class);
+            final Unmarshaller marshaller = jaxbContext.createUnmarshaller();
+            return (ConfigType) marshaller.unmarshal(configStream);
+        }
+        catch (final JAXBException e)
+        {
+            throw new IllegalArgumentException(e.getMessage(), e);
+        }
+        catch (final FileNotFoundException e)
+        {
+            LogLog.warn("filter-config.xml not present in the " +
+                "classpath, ignoring!!! If you want to use filters with " +
+                "ca.athabascau.util.log4j.SMTPAppender, then this " +
+                "config file should be present");
+        }
+
+        return null;
+    }
 
     /**
      * Gets the value of the filters property.
@@ -75,7 +118,13 @@ public class ConfigType
         {
             filters = new ArrayList<FilterType>();
         }
-        return this.filters;
+
+        for (final FilterType filterType : filters)
+        {
+            filterType.setParent(this);
+        }
+
+        return Collections.unmodifiableList(this.filters);
     }
 
     /**
@@ -88,53 +137,31 @@ public class ConfigType
     public FilterType findMatch(final String logEntry)
     {
         getFilters();   // ensure filters is initialized
-        for (int index = 0; index < filters.size(); index++)
-        {
-            final FilterType filter = filters.get(index);
-            if (filter.match(logEntry))
-            {
-                return filter;
-            }
-        }
-
-        return null;
+        final Optional<FilterType> result = filters
+            .stream()
+            .filter(filterType -> filterType.match(logEntry))
+            .findFirst();
+        return result.orElse(null);
     }
 
-    /**
-     * @param filterConfig
-     *
-     * @return the ConfigType instance with all appropriate options set.
-     */
-    public static ConfigType load(String filterConfig)
+    public List<VarType> getVars()
     {
-        InputStream configStream = ConfigType.class.getResourceAsStream(
-            filterConfig);
-        try
+        if (vars == null)
         {
-            if (configStream == null)
-            {
-                configStream = new FileInputStream(filterConfig);
-            }
+            vars = new ArrayList<>();
+        }
+        return vars;
+    }
 
-            // config file exists
-            final JAXBContext jaxbContext = JAXBContext.newInstance(
-                ConfigType.class);
-            final Unmarshaller marshaller =
-                jaxbContext.createUnmarshaller();
-            return (ConfigType) marshaller.unmarshal(configStream);
-        }
-        catch (JAXBException e)
+    public StrSubstitutor getSubstitutor()
+    {
+        if (this.sub == null)
         {
-            throw new IllegalArgumentException(e.getMessage(), e);
+            final Map<String, String> substitutions = vars
+                .stream()
+                .collect(Collectors.toMap(VarType::getName, VarType::getValue));
+            this.sub = new StrSubstitutor(substitutions);
         }
-        catch (FileNotFoundException e)
-        {
-            LogLog.warn("filter-config.xml not present in the " +
-                "classpath, ignoring!!! If you want to use filters with " +
-                "ca.athabascau.util.log4j.SMTPAppender, then this " +
-                "config file should be present");
-        }
-
-        return null;
+        return this.sub;
     }
 }

@@ -8,9 +8,7 @@
 
 package ca.athabascau.util.log4j.xml;
 
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.xml.bind.annotation.*;
 
@@ -40,7 +38,6 @@ import javax.xml.bind.annotation.*;
 /*@XmlType(name = "filter", propOrder = {"to", "message", "regex"})*/
 public class FilterType
 {
-
     @XmlAttribute
     protected Boolean log;
     @XmlElement(required = true)
@@ -51,6 +48,7 @@ public class FilterType
     protected String regex;
     @XmlElement(required = false)
     protected String subject;
+    private ConfigType configType;
 
     public FilterType()
     {
@@ -65,7 +63,7 @@ public class FilterType
      */
     public String getTo()
     {
-        return to;
+        return configType.getSubstitutor().replace(to);
     }
 
     /**
@@ -87,7 +85,7 @@ public class FilterType
      */
     public String getMessage()
     {
-        return message;
+        return configType.getSubstitutor().replace(message);
     }
 
     /**
@@ -181,11 +179,20 @@ public class FilterType
      */
     public String getSubject()
     {
-        return subject;
+        return configType.getSubstitutor().replace(subject);
     }
 
-    public void setSubject(String subject)
+    public void setSubject(final String subject)
     {
         this.subject = subject;
+    }
+
+    @XmlTransient
+    public void setParent(final ConfigType configType)
+    {
+        if (this.configType == null)
+        {
+            this.configType = configType;
+        }
     }
 }

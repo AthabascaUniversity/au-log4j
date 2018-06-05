@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+  <var name="me" value="me@example.com"/>
+  <var name="you" value="you@example.com"/>
+  <var name="them" value="them@example.com"/>
+  <var name="extrainput" value="with a variable"/>
+
   <filter log="false">
-    <to>you@example.com</to>
+    <to>${you}</to>
     <message>not logged</message>
     <regex>(?s)(?i).*Should not be logged to you@example.com.*</regex>
   </filter>
@@ -12,7 +17,7 @@
     in EmailEvaluator where it calls findMatch(), you'll be able to see
     approximately how long a match will take if the match is at the bottom of
     the config file-->                                                             0
-    <to>you@example.com</to>
+    <to>${you}</to>
     <!-- A custom message to be prefixed before the log in the email, or as part
      of the message itself-->
     <message>simulate lots of config items</message>
@@ -30,16 +35,16 @@
   </filter>
 
   <filter log="true">
-    <to>you@example.com,them@example.com</to>
+    <to>${you},them@example.com</to>
     <message>you and them</message>
     <regex>(?s)(?i).*Test multiple recipients.*</regex>
   </filter>
 
   <filter log="true">
-    <to>you@example.com</to>
+    <to>${you}</to>
     <message>Special subject is working</message>
     <regex>(?s)(?i).*Test special subject.*</regex>
-    <subject>specific error</subject>
+    <subject>specific error ${extrainput}</subject>
   </filter>
 
 </config>

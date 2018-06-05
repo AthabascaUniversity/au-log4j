@@ -222,7 +222,7 @@ public class SMTPAppenderTest extends TestCase
 
         Assert.assertTrue("you@example.com should have a message with " +
             "subject 'specific error' but it does not",
-            checkSubject("you", "specific error"));
+            checkSubject("you", "specific error with a variable"));
     }
 
     private boolean checkSubject(final String username, final String subject)
@@ -280,6 +280,18 @@ public class SMTPAppenderTest extends TestCase
         }
 
         return false;
+    }
+
+    public void testLogNull()
+    {
+        try
+        {
+            throw new RuntimeException("blah");
+        }
+        catch(RuntimeException e)
+        {
+            logger.info(e);
+        }
     }
 
     protected void tearDown() throws Exception
